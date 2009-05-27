@@ -1,0 +1,20 @@
+<h1>Editing weekend</h1>
+
+<% form_for(@weekend) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :week %><br />
+    <%= f.text_field :week %>
+  </p>
+  <p>
+    <%= f.label :day %><br />
+    <%= f.text_field :day %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @weekend %> |
+<%= link_to 'Back', weekends_path %>

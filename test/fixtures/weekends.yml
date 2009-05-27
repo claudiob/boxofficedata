@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  week: 1
+  day: 1
+
+two:
+  week: 1
+  day: 1
