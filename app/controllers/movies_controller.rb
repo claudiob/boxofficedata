@@ -3,16 +3,30 @@ class MoviesController < ApplicationController
   # GET /movies.xml
   
   def index
-    
     if !params[:group_id].blank?
       @group = Group.find(params[:group_id])
       scoped_movies = @group.movies
     else
-      conditions = {}
-      conditions = conditions.merge(:studio_id => params[:studio_id]) unless params[:studio_id].blank?
-      conditions = conditions.merge(:genre_id => params[:genre_id]) unless params[:genre_id].blank?
-      conditions = conditions.merge(:rating_id => params[:rating_id]) unless params[:rating_id].blank?
-      scoped_movies = Movie.scoped(:conditions => conditions)
+      conditions  = []
+      arguments = {}
+      unless params[:search].blank?
+        conditions << 'title LIKE :title'
+        arguments[:title] = "%#{params[:search]}%"
+      end
+      unless params[:studio_id].blank?
+        conditions << 'studio_id = :studio_id'
+        arguments[:studio_id] = params[:studio_id]
+      end
+      unless params[:genre_id].blank?
+        conditions << 'genre_id = :genre_id'
+        arguments[:genre_id] = params[:genre_id]
+      end
+      unless params[:rating_id].blank?
+        conditions << 'rating_id = :rating_id'
+        arguments[:rating_id] = params[:rating_id]
+      end
+      all_conditions = conditions.join(' AND ')    
+      scoped_movies = Movie.scoped(:conditions => [all_conditions, arguments])
     end
     @movies = scoped_movies.paginate(:include => [:genre, :studio, :rating],
       :page => params[:page], :per_page  => 10)

@@ -1,5 +1,12 @@
 <h1>Listing movies</h1>
 
+<% form_tag movies_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
 <table>
   <tr>
     <th>Title</th>
@@ -23,14 +30,11 @@
     <td><%=h movie.released_on %></td>
     <td><%=h movie.budget %></td>
     <td><%= link_to 'Results', movie_results_path(movie) %></td>
+    <td><%= link_to 'Plot', movie_grosses_path(movie, :format => 'line') %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'Import again', import_movies_path, :confirm => 'Are you sure?', :method => :put %>
-
-<%= link_to 'New movie', new_movie_path %>
 
 <%= will_paginate @movies, {:remote => true} %>
