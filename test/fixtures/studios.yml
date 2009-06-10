@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+sony:
+  code: sony
+  name: Sony
+
+warner:
+  code: warnerbros
+  name: WB

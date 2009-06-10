@@ -1,0 +1,36 @@
+<h1>Listing movies</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+<!--    <th>Code</th> -->
+    <th>Studio</th>
+    <th>Genre</th>
+    <th>Rating</th>
+    <th>Minutes</th>
+    <th>Released on</th>
+    <th>Budget</th>
+  </tr>
+
+<% @movies.each do |movie| %>
+  <tr>
+    <td><%=h movie.title %></td>
+<!--    <td><%=h movie.code %></td> -->
+    <td><%=h movie.studio.name %></td>
+    <td><%=h movie.genre.name %></td>
+    <td><%=h movie.rating.code %></td>
+    <td><%=h movie.minutes %></td>
+    <td><%=h movie.released_on %></td>
+    <td><%=h movie.budget %></td>
+    <td><%= link_to 'Results', movie_results_path(movie) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Import again', import_movies_path, :confirm => 'Are you sure?', :method => :put %>
+
+<%= link_to 'New movie', new_movie_path %>
+
+<%= will_paginate @movies, {:remote => true} %>

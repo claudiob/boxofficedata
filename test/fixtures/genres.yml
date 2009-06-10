@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+drama:
+  name: Drama
+
+comedy:
+  name: Comedy
+
+scifi:
+  name: Sci- fi

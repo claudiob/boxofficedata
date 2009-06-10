@@ -1,0 +1,19 @@
+<h1>Listing grosses</h1>
+<h2><%=h @movie.title if @movie %></h2>
+<h3><%=h @country.name if @country %></h3>
+<table>
+  <tr>
+    <th>Period</th>
+    <th>Gross</th>
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+    <td><%=h result.period.ends_on if result.period %></td>
+    <td><%=h number_to_currency(result.gross, :precision => 0) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

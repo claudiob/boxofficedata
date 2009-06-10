@@ -1,0 +1,51 @@
+<h1>New result</h1>
+
+<% form_for(@result) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :measurable_type %><br />
+    <%= f.text_field :measurable_type %>
+  </p>
+  <p>
+    <%= f.label :measurable_id %><br />
+    <%= f.text_field :measurable_id %>
+  </p>
+  <p>
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </p>
+  <p>
+    <%= f.label :period_type %><br />
+    <%= f.text_field :period_type %>
+  </p>
+  <p>
+    <%= f.label :period_id %><br />
+    <%= f.text_field :period_id %>
+  </p>
+  <p>
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.label :gross %><br />
+    <%= f.text_field :gross %>
+  </p>
+  <p>
+    <%= f.label :cumulative %><br />
+    <%= f.text_field :cumulative %>
+  </p>
+  <p>
+    <%= f.label :theaters %><br />
+    <%= f.text_field :theaters %>
+  </p>
+  <p>
+    <%= f.label :periods %><br />
+    <%= f.text_field :periods %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', results_path %>

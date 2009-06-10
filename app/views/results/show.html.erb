@@ -1,0 +1,43 @@
+<p>
+  <b><%=h @result.measurable_type %></b>
+  <%=h @result.measurable.name %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @result.country.name %>
+</p>
+
+<p>
+  <b><%=h @result.period_type %>:</b>
+  <%=wts @result.period %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%=h @result.position %>
+</p>
+
+<p>
+  <b>Gross:</b>
+  <%=ntc @result.gross %>
+</p>
+
+<p>
+  <b>Cumulative:</b>
+  <%=ntc @result.cumulative %>
+</p>
+
+<p>
+  <b>Theaters:</b>
+  <%=nwd @result.theaters %>
+</p>
+
+<p>
+  <b>Periods:</b>
+  <%=h @result.periods %>
+</p>
+
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

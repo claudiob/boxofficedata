@@ -1,0 +1,24 @@
+<h1>Listing weekends</h1>
+
+<table>
+  <tr>
+    <th>Year</th>
+    <th>Week</th>
+  </tr>
+
+<% @weekends.each do |weekend| %>
+  <tr>
+    <td><%=h weekend.year %></td>
+    <td><%=h weekend.week %></td>
+    <td><%= link_to 'Show', weekend %></td>
+    <td><%= link_to 'Edit', edit_weekend_path(weekend) %></td>
+    <td><%= link_to 'Destroy', weekend, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New weekend', new_weekend_path %>
+
+<%= will_paginate @weekends %>

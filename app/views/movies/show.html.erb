@@ -1,0 +1,43 @@
+<p>
+  <b>Title:</b>
+  <%=h @movie.title %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%=h @movie.code %>
+</p>
+
+<p>
+  <b>Studio:</b>
+  <%=h @movie.studio.name %>
+</p>
+
+<p>
+  <b>Genre:</b>
+  <%=h @movie.genre.name %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%=h @movie.rating.code %>
+</p>
+
+<p>
+  <b>Minutes:</b>
+  <%=h @movie.minutes %>
+</p>
+
+<p>
+  <b>Released on:</b>
+  <%=h @movie.released_on %>
+</p>
+
+<p>
+  <b>Budget:</b>
+  <%=h @movie.budget %>
+</p>
+
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

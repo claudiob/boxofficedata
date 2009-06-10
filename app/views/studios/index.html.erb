@@ -1,0 +1,21 @@
+<h1>Listing studios</h1>
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+  </tr>
+
+<% @studios.each do |studio| %>
+  <tr>
+    <td><%=h studio.code %></td>
+    <td><%=h studio.name %></td>
+    <td><%= link_to 'Movies', studio_movies_path(studio) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New studio', new_studio_path %>
+
+<%= will_paginate @studios %>

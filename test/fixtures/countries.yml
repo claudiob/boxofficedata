@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+us:
+  name: United States
+
+spain:
+  name: Spain
+
+italy:
+  name: Italy

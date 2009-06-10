@@ -1,0 +1,2 @@
+module GrossesHelper
+end

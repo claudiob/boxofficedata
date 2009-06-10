@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+titanic:
+  title: Titanic
+  code: titanic
+  studio: sony
+  genre: drama
+  rating: r
+  minutes: 1
+  released_on: 2009-05-25
+  budget: 100.0
+
+et:
+  title: ET
+  code: et
+  studio: warner
+  genre: scifi
+  rating: pg
+  minutes: 1
+  released_on: 2009-05-25
+  budget: 0.5
+
+bladerunner:
+  title: Blade Runner
+  code: bladerunner
+  studio: warner
+  genre: scifi
+  rating: pg
+  minutes: 100
+  released_on: 2009-05-25
+  budget: 0.5

@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+love_titanic:
+  group: loved_movies
+  item: titanic
+  item_type: Movie
+  exclude: false
+
+hate_et:
+  group: loved_movies
+  item: et
+  item_type: Movie
+  exclude: true
+
+love_scifi:
+  group: loved_movies
+  item: scifi
+  item_type: Genre
+  exclude: false

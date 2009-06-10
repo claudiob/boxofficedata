@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  measurable: titanic
+  measurable_type: Movie 
+  country: us
+  period: one
+  period_type: Weekend
+  position: 1
+  gross: 1
+  cumulative: 2
+  theaters: 1
+  periods: 1
