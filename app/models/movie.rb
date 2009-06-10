@@ -14,7 +14,7 @@ class Movie < ActiveRecord::Base
   def name
     title
   end
-  
+
   def wide_results(min_theaters = 1000, max_periods=5)
     wide_periods = self.results.select{|x| x.theaters >= min_theaters && !x.periods.nil?}
     return [] if wide_periods.empty? ||  wide_periods.nil?
