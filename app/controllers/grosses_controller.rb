@@ -3,16 +3,11 @@ class GrossesController < ApplicationController
     # GET /grosses
     # GET /grosses.xml
     def index
-      conditions = {}
-      conditions = conditions.merge(:movie_id => params[:movie_id]) unless params[:movie_id].blank?
-      conditions = conditions.merge(:country_id => params[:country_id]) unless params[:country_id].blank?
-      conditions = conditions.merge(:period_id => params[:weekend_id], :period_type => 'Weekend') unless params[:weekend_id].blank?
-
       @movie = Movie.find(params[:movie_id], :include => [{:results => :period}])
       periods = @movie.results.collect(&:period)
       first_period, last_period = periods.min, periods.max
       @results = Result.all(:include => :period, :select => "results.id, results.gross, 'Weekend' as period_type, weekends.id as period_id",
-       :joins => "RIGHT JOIN weekends ON results.period_type = 'Weekend' AND results.period_id = weekends.id AND results.movie_id = #{@movie.id}",
+       :joins => "RIGHT JOIN weekends ON results.period_type = 'Weekend' AND results.period_id = weekends.id AND results.measurable_type = 'Movie' and results.measurable_id = #{@movie.id}",
        :conditions => "(year > #{first_period.year} && year <= #{last_period.year} && week < #{first_period.week} && week < #{last_period.week}) || (year < #{last_period.year} && year >= #{first_period.year} && week > #{last_period.week} && week > #{first_period.week}) || (year between #{first_period.year} and #{last_period.year} && week between #{first_period.week} and #{last_period.week}) || (year > #{first_period.year} && year < #{last_period.year})" )
 
       respond_to do |format|

@@ -19,7 +19,7 @@ class Weekend < ActiveRecord::Base
     #"#{week}/#{year}"
     (Date.civil(year,1,1).first_friday + (week-1).weeks).to_s(:short) 
   end
-  
+
   def import_results
     import_results_from_local_file
   end
@@ -30,7 +30,7 @@ class Weekend < ActiveRecord::Base
     FasterCSV.foreach(data_file, :headers => :first_row) do |row|
       studio = Studio.find_or_create_by_code(row["studio_code"], :name => row["studio_name"])
       movie = Movie.find_or_create_by_code(row["code"], :title => row["title"], :budget => row["budget"], :studio => studio)
-      result = self.results.find_or_initialize_by_movie_id(movie.id)
+      result = self.results.find_or_initialize_by_measurable_type_and_measurable_id('Movie', movie.id)
       result.position = row["position"]
       result.gross = row["gross"]
       result.cumulative = row["cumulative"]
