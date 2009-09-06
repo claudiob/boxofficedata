@@ -9,16 +9,13 @@
 
 <% @memberships.each do |membership| %>
   <tr>
-    <td><%=h membership.group.name %></td>
-    <td><%=h membership.item_type %>: <%=h membership.item.name %></td>
+    <td><%= link_to membership.group.name, membership.group %></td>
+    <td><%=h membership.item_type %>: <%= link_to membership.item.name, membership.item %></td>
     <td><%=h membership.exclude %></td>
-    <td><%= link_to 'Show', membership %></td>
-    <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
-    <td><%= link_to 'Destroy', membership, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New membership', new_membership_path %>
+<%= will_paginate @memberships %>

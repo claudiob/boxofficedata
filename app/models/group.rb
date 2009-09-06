@@ -1,5 +1,8 @@
 class Group < ActiveRecord::Base
   has_many :memberships
+  has_many :items, :through => :memberships
+  has_many :results, :as => :measurable, :order => :periods
+  has_many :periods, :through => :results, :source => :period
 #  delegate  :movies, :to => :memberships
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_uniqueness_of :name, :on => :create, :message => "must be unique"

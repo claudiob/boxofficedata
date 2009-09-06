@@ -1,17 +1,22 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :memberships
 
-  map.resources :groups, :has_many => :movies, :member => {:average_gross => :get}
+  map.resources :groups, :has_many => [:memberships, :items, :results, :periods, :movies, :genres], :member => {:average_gross => :get}
 
   map.resources :results
 
-  map.resources :movies, :has_many => [:results, :grosses], :has_one => [:studio, :genre, :rating], :collection => { :import => :put }
+  map.resources :movies, :has_many => :grosses, :has_one => [:studio, :genre, :rating], :collection => { :import => :put } do |movie|
+     movie.resources :results
+     movie.resources :periods
+     movie.resources :memberships
+     movie.resources :groups
+  end
 
   map.resources :ratings, :has_many => :movies
 
   map.resources :studios, :has_many => :movies
 
-  map.resources :genres, :has_many => :movies
+  map.resources :genres, :has_many => [:movies, :memberships, :groups]
 
   map.resources :countries, :has_many => :results
 

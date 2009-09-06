@@ -28,7 +28,15 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.xml
   def index
-    @groups = Group.all
+    if !params[:genre_id].blank?
+      @genre = Genre.find(params[:genre_id])
+      scoped_groups = @genre.groups
+    else
+      conditions  = []
+      scoped_groups = Group.scoped(:conditions => conditions)
+    end
+    @groups = scoped_groups.paginate(
+      :page => params[:page], :per_page  => 10)
 
     respond_to do |format|
       format.html # index.html.erb

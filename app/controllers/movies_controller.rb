@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
   # GET /movies.xml
   
   def index
+    @title = "Access movie incomes"
     if !params[:group_id].blank?
       @group = Group.find(params[:group_id])
       scoped_movies = @group.movies
@@ -12,6 +13,7 @@ class MoviesController < ApplicationController
       unless params[:search].blank?
         conditions << 'title LIKE :title'
         arguments[:title] = "%#{params[:search]}%"
+        @title = "Movie titled '#{params[:search]}'"
       end
       unless params[:studio_id].blank?
         conditions << 'studio_id = :studio_id'
