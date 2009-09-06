@@ -26,16 +26,28 @@ class GrossesController < ApplicationController
           send_data g.to_blob('gif'), :disposition => 'inline', :type => 'image/gif' 
         }
         format.line  { 
-          g = Gruff::Line.new # ("#{30*@results.size}x600")
+          g = Gruff::Line.new("800x300") # ("#{30*@results.size}x600")
           title = @movie.title
           g.title = "U.S. Weekend Gross"
           g.round_maximum_value = true
-
+          g.hide_title = true
+          g.hide_legend = true
+          g.hide_dots = true
+          g.bottom_margin = 0
+          g.left_margin = 0
+          g.right_margin = 0
+          g.top_margin = 0
+          
           g.data title, @results.collect{|r| r.gross.to_i unless r.gross.nil?}
           g.minimum_value = 0
-          @results.each_with_index do |r, i| 
-            g.labels[i] = (Date.civil(r.period.year,1,1).first_friday + (r.period.week).weeks).to_s(:short)
-          end
+#          @results.each_with_index do |r, i| 
+#            g.labels[i] = (Date.civil(r.period.year,1,1).first_friday + (r.period.week).weeks).to_s(:short)
+#          end
+          rfirst = @results.first
+          rlast = @results.last
+          g.labels[0] = (Date.civil(rfirst.period.year,1,1).first_friday + (rfirst.period.week).weeks).to_s  
+          g.labels[@results.length - 1] = (Date.civil(rlast.period.year,1,1).first_friday + (rlast.period.week).weeks).to_s  
+
   #       @results.each_with_index do |r, i| g.labels[i] = r.ends_on end
           send_data g.to_blob('gif'), :disposition => 'inline', :type => 'image/gif' 
         }
