@@ -1,17 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Results: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+
+<title>Claudio Baccigalupo &sect; Access movie incomes</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Language" content="en" />
+<meta name="language" content="en" />
+<meta name="robots" content="all" />
+<meta http-equiv="imagetoolbar" content="false" />
+
+<meta name="author" content="claudiob@gmail.com" />
+<meta name="Copyright" content="Claudio Baccigalupo" />
+
+<meta name="description" content="Claudio Baccigalupo's Box Office CGI" />
+<meta name="keywords" content="recommender systems, music, CBR, portfolio, CV, curriculum, work" />
+<meta name="viewport" content="width=960" />
+<%= stylesheet_link_tag 'style' %>
 </head>
 <body>
+  
+<h1><a href="/" title="Home">Claudio Baccigalupo</a></h1>
 
-<p style="color: green"><%= flash[:notice] %></p>
+<div id="content">
 
-<%= yield %>
-
-</body>
-</html>
+  <h2 id="title"><%= @movie.name %></h2>
+  <%= link_to '&larr; Back to movies', movies_path, :class => 'download white' %>
+  <div id="subtitle">
+    released
+    <%= "by <em>#{@movie.studio.name.downcase}</em>" if @movie.studio %>
+    <%= "on <em>#{@movie.released_on.to_s.downcase}</em>" if @movie.released_on %>
+    <%= "(budget: #{@movie.print_budget})" if @movie.budget %>
+  </div>
+  
+  <!--p style="color: green"><%= flash[:notice] %></p-->
+  <%= yield %>
+  
+  
+</div>
+</body></html>

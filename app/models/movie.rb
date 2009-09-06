@@ -14,6 +14,10 @@ class Movie < ActiveRecord::Base
   def name
     title
   end
+  
+  def print_budget
+    "#{self.budget.to_i}M$" if self.budget
+  end
 
   def wide_results(min_theaters = 1000, max_periods=5)
     wide_periods = self.results.select{|x| x.theaters >= min_theaters && !x.periods.nil?}

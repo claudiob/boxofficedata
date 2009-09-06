@@ -1,40 +1,44 @@
-<h1>Listing movies</h1>
-
-<% form_tag movies_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
+<p>
+A simple interface to Box Office Mojo movie results. Click on <strong>Table</strong> or <strong>Plot</strong> to show movie grosses.
+</p>
 
 <table>
   <tr>
-    <th>Title</th>
+    <th class="title">Title</th>
 <!--    <th>Code</th> -->
-    <th>Studio</th>
-    <th>Genre</th>
-    <th>Rating</th>
-    <th>Minutes</th>
-    <th>Released on</th>
-    <th>Budget</th>
+    <th class="studio">Studio</th>
+    <th class="genre">Genre</th>
+    <!--th>Rating</th-->
+    <!--th>Minutes</th-->
+    <th class="released">Released</th>
+    <th class="budget">Budget</th>
+    <th class="gross">Gross</th>
   </tr>
 
 <% @movies.each do |movie| %>
-  <tr>
-    <td><%=h movie.title %></td>
+  <tr <%= alternate_class %>>
+    <td class="title"><%= movie.title %></td>
 <!--    <td><%=h movie.code %></td> -->
-    <td><%=h movie.studio.name %></td>
-    <td><%=h movie.genre.name %></td>
-    <td><%=h movie.rating.code %></td>
-    <td><%=h movie.minutes %></td>
-    <td><%=h movie.released_on %></td>
-    <td><%=h movie.budget %></td>
-    <td><%= link_to 'Results', movie_results_path(movie) %></td>
-    <td><%= link_to 'Plot', movie_grosses_path(movie, :format => 'line') %></td>
+    <td class="studio"><%= movie.studio.name %></td>
+    <td class="genre"><%= movie.genre.name %></td>
+    <!--td><%=h movie.rating.code %></td-->
+    <!--td><%=h movie.minutes %></td-->
+    <td class="released"><%=h movie.released_on %></td>
+    <td class="budget"><%=h movie.print_budget %></td>
+    <td class="gross"><%= link_to 'Table', movie_results_path(movie) %>
+      <%= link_to 'Plot', movie_grosses_path(movie) %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<% form_tag movies_path, :method => 'get', :id => 'search_form' do %>
+  <fieldset>
+  <label for="search">Filter by title:</label>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "OK", :name => nil %>
+  </fieldset>
+<% end %>
 
-<%= will_paginate @movies, {:remote => true} %>
+
+<%= will_paginate @movies %>
+

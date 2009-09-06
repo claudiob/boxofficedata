@@ -25,13 +25,14 @@
 
 <div id="content">
 
-  <h2 id="title"><%= @title %></h2>
-  <a href="http://github.com/claudiob/boxofficedata/" class="download">Browse the code</a>
+  <h2 id="title"><%= @movie.name %></h2>
+  <%= link_to '&larr; Back to movies', movies_path, :class => 'download white' %>
 
   <div id="subtitle">
-      coded in <em>ruby on rails</em> 
-      in <em>2009</em>
-      (<span class="on">beta</span>)
+    released
+    <%= "by <em>#{@movie.studio.name.downcase}</em>" if @movie.studio %>
+    <%= "on <em>#{@movie.released_on.to_s.downcase}</em>" if @movie.released_on %>
+    <%= "(budget: #{@movie.print_budget})" if @movie.budget %>
   </div>
   
   <!--p style="color: green"><%= flash[:notice] %></p-->
