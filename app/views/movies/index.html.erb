@@ -33,7 +33,7 @@ A simple interface to Box Office Mojo movie results. Click on <strong>Table</str
 
 <% form_tag movies_path, :method => 'get', :id => 'search_form' do %>
   <fieldset>
-  <label for="search">Filter by title:</label>
+  <label for="search">Filter title:</label>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "OK", :name => nil %>
   </fieldset>
